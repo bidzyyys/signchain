@@ -5,31 +5,38 @@ import java.util.logging.Logger
 import io.grpc.{Server, ServerBuilder}
 
 import scala.concurrent.{ExecutionContext, Future}
-
-import tendermint.abci.types.types.{
+import tendermint.abci.types.{
   ABCIApplicationGrpc,
-  RequestCommit,
-  ResponseCommit,
-  RequestFlush,
-  ResponseFlush,
-  RequestInfo,
-  ResponseInfo,
-  RequestEndBlock,
-  ResponseEndBlock,
-  RequestInitChain,
-  ResponseInitChain,
-  RequestSetOption,
-  ResponseSetOption,
-  RequestCheckTx,
-  ResponseCheckTx,
-  RequestEcho,
-  ResponseEcho,
-  RequestDeliverTx,
-  ResponseDeliverTx,
+  RequestApplySnapshotChunk,
   RequestBeginBlock,
-  ResponseBeginBlock,
+  RequestCheckTx,
+  RequestCommit,
+  RequestDeliverTx,
+  RequestEcho,
+  RequestEndBlock,
+  RequestFlush,
+  RequestInfo,
+  RequestInitChain,
+  RequestListSnapshots,
+  RequestLoadSnapshotChunk,
+  RequestOfferSnapshot,
   RequestQuery,
-  ResponseQuery
+  RequestSetOption,
+  ResponseApplySnapshotChunk,
+  ResponseBeginBlock,
+  ResponseCheckTx,
+  ResponseCommit,
+  ResponseDeliverTx,
+  ResponseEcho,
+  ResponseEndBlock,
+  ResponseFlush,
+  ResponseInfo,
+  ResponseInitChain,
+  ResponseListSnapshots,
+  ResponseLoadSnapshotChunk,
+  ResponseOfferSnapshot,
+  ResponseQuery,
+  ResponseSetOption
 }
 
 object ABCIServer {
@@ -114,5 +121,21 @@ class ABCIServer(executionContext: ExecutionContext) { self =>
 
     override def endBlock(request: RequestEndBlock): Future[ResponseEndBlock] =
       ???
+
+    override def listSnapshots(
+        request: RequestListSnapshots
+    ): Future[ResponseListSnapshots] = ???
+
+    override def offerSnapshot(
+        request: RequestOfferSnapshot
+    ): Future[ResponseOfferSnapshot] = ???
+
+    override def loadSnapshotChunk(
+        request: RequestLoadSnapshotChunk
+    ): Future[ResponseLoadSnapshotChunk] = ???
+
+    override def applySnapshotChunk(
+        request: RequestApplySnapshotChunk
+    ): Future[ResponseApplySnapshotChunk] = ???
   }
 }
